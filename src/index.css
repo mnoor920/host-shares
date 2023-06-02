@@ -1012,3 +1012,34 @@ code {
   background-color: #ccc;
   animation: pulse 1.5s infinite;
 }
+
+.right_model {
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+}
+
+.roundeed_class {
+  border-radius: 10px 0px 0px 0px;
+}
+
+.roundeed_class_one {
+  border-radius: 0px 10px 0px 0px;
+}
+
+.roundeed_class_two {
+  border-radius: 0px 0px 10px 10px;
+}
+
+.roundeed_class_three {
+  border-radius: 10px;
+}
+
+.category_page {
+  padding: 16px 0px;
+}
+
+.icon_filter {
+  margin-top: .5px;
+}

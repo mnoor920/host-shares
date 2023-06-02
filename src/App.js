@@ -4,6 +4,8 @@ import 'leaflet/dist/leaflet.css';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import 'react-image-lightbox/style.css';
+import "react-multi-carousel/lib/styles.css";
 import Home from './pages/home';
 import RoomDetail from './pages/roomDetail';
 import SearchPage from './pages/searchPage';

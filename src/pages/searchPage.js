@@ -3,12 +3,12 @@ import Layout from '../layout/layout'
 import Cards from '../components/cards'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import { FaMarker } from 'react-icons/fa';
 import MarkerIcon from '../assests/marker.png';
 import { useLocation } from 'react-router-dom';
 
 const SearchPage = () => {
     const [data, setData] = useState([]);
+    const [category, setCategory] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -22,9 +22,10 @@ const SearchPage = () => {
         const fetchData = async () => {
             setIsLoading(true)
             try {
-                const response = await fetch('https://file.notion.so/f/s/24643894-e5c3-4c40-974a-52594f581e03/listings.json?id=f795dab6-14d4-48a9-9567-c72151d311a2&table=block&spaceId=f2ea7328-64a4-4f18-bacc-df6c9ac3d888&expirationTimestamp=1685614360897&signature=y6gaECGUjdM-q0HwDbbkB9Y8u5PGGy_ObUlQxFjpLo0&downloadName=listings.json');
+                const response = await fetch('https://file.notion.so/f/s/24643894-e5c3-4c40-974a-52594f581e03/listings.json?id=f795dab6-14d4-48a9-9567-c72151d311a2&table=block&spaceId=f2ea7328-64a4-4f18-bacc-df6c9ac3d888&expirationTimestamp=1685811589206&signature=MAcz7-tuY6N6LscNmApYWI3MeGEF23rwc4v9iMsV04Q&downloadName=listings.json');
                 const jsonData = await response.json();
                 setData(jsonData && jsonData.data);
+                setCategory(jsonData && jsonData.categories);
                 setIsLoading(false)
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -43,7 +44,7 @@ const SearchPage = () => {
     const locations = searchedRoom?.map(obj => ({ lat: obj?.info?.location?.lat, lng: obj?.info?.location?.long, city: obj?.info?.title }));
     console.log("Searched Room", locations)
     return (
-        <Layout data={data}>
+        <Layout data={data} category={category} >
 
             <div className="">
                 {isLoading ? (
