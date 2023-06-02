@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import Layout from "../layout/layout"
-import { FaStar } from 'react-icons/fa'
-import Lightbox from 'react-image-lightbox';
+import { FaStar, FaTimes } from 'react-icons/fa'
 import { BsDoorOpen, BsCalendarHeart } from "react-icons/bs"
 import { SiVexxhost } from 'react-icons/si'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
@@ -52,13 +51,6 @@ const RoomDetail = () => {
         setIsOpen(false);
     };
 
-    const movePrev = () => {
-        setPhotoIndex((photoIndex + images.length - 1) % images.length);
-    };
-
-    const moveNext = () => {
-        setPhotoIndex((photoIndex + 1) % images.length);
-    };
 
     function ShowMoreLess({ text, maxLength }) {
         const [showFullText, setShowFullText] = useState(false);
@@ -68,17 +60,17 @@ const RoomDetail = () => {
         };
 
         const renderText = () => {
-            if (showFullText || text.length <= maxLength) {
+            if (showFullText || text?.length <= maxLength) {
                 return text;
             }
 
-            return text.slice(0, maxLength) + '...';
+            return text?.slice(0, maxLength) + '...';
         };
 
         return (
             <div>
                 <p className='text-sm tracking-widest font-thin text-[#717171] mb-3'>{renderText()}</p>
-                {text.length > maxLength && (
+                {text?.length > maxLength && (
                     <button onClick={toggleText}>
                         {showFullText ? 'Show Less' : 'Show More'}
                     </button>
@@ -87,7 +79,6 @@ const RoomDetail = () => {
         );
     }
 
-    console.log("Resutl data", searchedRoomDetail[0])
     return (
         <div>
             <Layout data={data} category={category}>
@@ -218,7 +209,7 @@ const RoomDetail = () => {
                                             </h2>
                                             <br />
                                             <div className="grid grid-cols-2 gap-4">
-                                                {searchedRoomDetail[0].info?.amenities?.data?.slice(0, 30).map((item, index) => {
+                                                {searchedRoomDetail[0]?.info?.amenities?.data?.slice(0, 30).map((item, index) => {
                                                     return (
                                                         <div className="flex">
                                                             <div className="mr-2 icon" key={index} >
@@ -317,18 +308,26 @@ const RoomDetail = () => {
                 </div>
 
             </Layout>
-
-
-
             {isOpen && (
-                <Lightbox
-                    mainSrc={images[photoIndex]?.url}
-                    nextSrc={images[(photoIndex + 1) % images.length]?.url}
-                    prevSrc={images[(photoIndex + images.length - 1) % images.length]?.url}
-                    onCloseRequest={closeLightbox}
-                    onMovePrevRequest={movePrev}
-                    onMoveNextRequest={moveNext}
-                />
+
+                <div className="fixed top-0 right-0 w-full bg-white images_views">
+                    <div className="image_inner">
+                        <div className="icon" onClick={closeLightbox} >
+                            <FaTimes />
+                        </div>
+                        {images?.map((item, index) => {
+                            return (
+                                <div className="image_view" key={index}>
+                                    <img src={item?.url} width="100%" alt="" />
+                                </div>
+                            )
+                        })}
+                    </div>
+
+
+
+
+                </div>
             )}
         </div>
     )

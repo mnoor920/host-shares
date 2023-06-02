@@ -1043,3 +1043,34 @@ code {
 .icon_filter {
   margin-top: .5px;
 }
+
+.images_views {
+  width: 100%;
+  height: 100vh;
+  z-index: 999999999999999;
+  position: fixed;
+  text-align: center;
+  overflow-y: auto;
+}
+
+.image_inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.image_inner .icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.image_inner .icon:hover {
+  cursor: pointer;
+}
+
+.image_view {
+  text-align: center;
+  margin: 10px 0px;
+}

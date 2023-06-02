@@ -42,7 +42,6 @@ const SearchPage = () => {
     });
 
     const locations = searchedRoom?.map(obj => ({ lat: obj?.info?.location?.lat, lng: obj?.info?.location?.long, city: obj?.info?.title }));
-    console.log("Searched Room", locations)
     return (
         <Layout data={data} category={category} >
 

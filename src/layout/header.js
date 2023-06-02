@@ -6,30 +6,10 @@ import { Link } from 'react-router-dom'
 import Carousel from 'react-multi-carousel';
 import { MdOutlineCategory } from "react-icons/md"
 import { MdOutlineFilterList } from "react-icons/md"
-import Slider from "react-slick";
 const Header = ({ data, category }) => {
-
-    const responsive = {
-        superLargeDesktop: {
-            // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 3000 },
-            items: 16
-        },
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 14
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 10
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 2
-        }
-    };
-    console.log("categoried", category)
     const [show, setShow] = useState(0)
+
+
     return (
         <>
             <div className='border-b border-[#eeebeb]'>
@@ -85,40 +65,6 @@ const Header = ({ data, category }) => {
                 <div className="category_page">
 
                 </div>
-
-            </div>
-            <div className='border-b border-[#eeebeb] my-4'>
-                <div className="max-w-[1250px] m-auto px-2">
-                    <div className="flex justify-between">
-                        <div className="mr-2">
-                            <Carousel responsive={responsive}>
-                                {category?.map((item, index) => {
-                                    return (
-                                        <div className="text-center" key={index}>
-                                            <MdOutlineCategory className='icon_filter' />
-                                            <p className='text-sm font-thin text-[#717171] my-2'>
-                                                {item.title}
-                                            </p>
-                                        </div>
-                                    )
-                                })}
-                            </Carousel>;
-
-                        </div>
-                        <div className="filter">
-                            <div className="p-2 border rounded-xl">
-                                <div className="flex">
-                                    <MdOutlineFilterList />
-                                    <span className='ml-2'>
-                                        Filter
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br />
-                </div>
-
 
             </div>
         </>

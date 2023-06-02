@@ -21,10 +21,6 @@ const Home = () => {
 
         fetchData();
     }, []);
-
-    console.log("all data", data)
-    console.log("all categories", category)
-
     return (
         <div>
             <Layout data={data} category={category} >
